@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace ERPTestAPI.Models
 {
+    //clinic Model
     public class ClinicModel
     {
         public long ClinicId { get; set; }

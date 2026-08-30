@@ -15,6 +15,8 @@ using System.Web.Http.Cors;
 
 namespace ERPTestAPI.Controllers
 {
+    //clinic API
+
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Clinic")]
     public class ClinicController : ApiController
