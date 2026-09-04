@@ -11,6 +11,7 @@ namespace ERPTestAPI.Models
         public String PatientCode { get; set; }
         public String PatientName { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public String DateOfBirthFormatted { get; set; }
         public String Gender { get; set; }
         public long Age { get; set; }
         public String MobileNo { get; set; }
@@ -18,7 +19,7 @@ namespace ERPTestAPI.Models
         public String Address { get; set; }
         public String BloodGroup { get; set; }
         public bool Insured { get; set; }
-        public long AreaId { get; set; }
+        public long? AreaId { get; set; }
         public String AreaCode { get; set; }
         public String AreaName { get; set; }
         public long CityId { get; set; }
@@ -36,6 +37,7 @@ namespace ERPTestAPI.Models
         public String PatientCode { get; set; }
         public String PatientName { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public String DateOfBirthFormatted { get; set; }
         public String Gender { get; set; }
         public long Age { get; set; }
         public String MobileNo { get; set; }
@@ -43,7 +45,7 @@ namespace ERPTestAPI.Models
         public String Address { get; set; }
         public String BloodGroup { get; set; }
         public bool Insured { get; set; }
-        public long AreaId { get; set; }
+        public long? AreaId { get; set; }
         public String AreaCode { get; set; }
         public String AreaName { get; set; }
         public long CityId { get; set; }
