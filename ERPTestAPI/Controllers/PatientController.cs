@@ -62,7 +62,7 @@ namespace ERPTestAPI.Controllers
                                 obj.Address = Convert.ToString(reader["Address"]);
                                 obj.BloodGroup = Convert.ToString(reader["BloodGroup"]);
                                 obj.Insured = Convert.ToBoolean(reader["Insured"]);
-                                obj.AreaId = Convert.ToInt64(reader["AreaId"] == DBNull.Value?0: reader["AreaId"]);
+                                obj.AreaId = Convert.ToInt64(reader["AreaId"] == DBNull.Value? 0: reader["AreaId"]);
                                 obj.AreaCode = Convert.ToString(reader["AreaCode"]);
                                 obj.AreaName = Convert.ToString(reader["AreaName"]);
                                 obj.CityId = Convert.ToInt64(reader["CityId"]);
