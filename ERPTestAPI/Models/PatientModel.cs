@@ -18,6 +18,8 @@ namespace ERPTestAPI.Models
         public String EmailAdd { get; set; }
         public String Address { get; set; }
         public String BloodGroup { get; set; }
+        public String MedicalHistory { get; set; }
+        public String Medicine { get; set; }
         public bool Insured { get; set; }
         public long? AreaId { get; set; }
         public String AreaCode { get; set; }
@@ -44,6 +46,8 @@ namespace ERPTestAPI.Models
         public String EmailAdd { get; set; }
         public String Address { get; set; }
         public String BloodGroup { get; set; }
+        public String MedicalHistory { get; set; }
+        public String Medicine { get; set; }
         public bool Insured { get; set; }
         public long? AreaId { get; set; }
         public String AreaCode { get; set; }
