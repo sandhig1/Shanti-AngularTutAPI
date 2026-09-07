@@ -228,6 +228,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\StaffCategoryController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\Startup.cs" />
@@ -243,6 +245,8 @@
     <Compile Include="Models\EnquiryModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ClinicModel.cs" />
+    <Compile Include="Models\DepartmentModel.cs" />
+    <Compile Include="Models\StaffCategoryModel.cs" />
     <Compile Include="Models\StaffModel.cs" />
     <Compile Include="Models\PatientModel.cs" />
     <Compile Include="Models\StateModel.cs" />
