@@ -254,13 +254,11 @@ namespace ERPTestAPI.Controllers
 
                         command.Parameters.Add("@sAppointmentNo", SqlDbType.VarChar, 10).Value = data.AppointmentNo;
                         command.Parameters.Add("@dAppointmentDate", SqlDbType.Date).Value = data.AppointmentDate;
-                        command.Parameters.Add("@tAppointmentTime", SqlDbType.Time).Value = data.AppointmentTime;
+                        command.Parameters.Add("@tAppointmentTime", SqlDbType.Time).Value = data.AppointmentTimeFormatted;
                         command.Parameters.Add("@iClinicId", SqlDbType.Int).Value = data.ClinicId;
                         command.Parameters.Add("@iPatientId", SqlDbType.Int).Value = data.PatientId;
-                        command.Parameters.Add("@iDoctorId", SqlDbType.Int).Value = data.PatientId;
+                        command.Parameters.Add("@iDoctorId", SqlDbType.Int).Value = data.DoctorId;
                         command.Parameters.Add("@sReason", SqlDbType.VarChar, 1000).Value = data.Reason;
-                        command.Parameters.Add("@iStatusId", SqlDbType.Int).Value = data.StatusId;
-                        
 
                         connection.Open();
 
@@ -308,12 +306,11 @@ namespace ERPTestAPI.Controllers
                         command.Parameters.Add("@iAppointmentId", SqlDbType.Int).Value = data.AppointmentId;
                         command.Parameters.Add("@sAppointmentNo", SqlDbType.VarChar, 10).Value = data.AppointmentNo;
                         command.Parameters.Add("@dAppointmentDate", SqlDbType.Date).Value = data.AppointmentDate;
-                        command.Parameters.Add("@tAppointmentTime", SqlDbType.Time).Value = data.AppointmentTime;
+                        command.Parameters.Add("@tAppointmentTime", SqlDbType.Time).Value = data.AppointmentTimeFormatted;
                         command.Parameters.Add("@iClinicId", SqlDbType.Int).Value = data.ClinicId;
                         command.Parameters.Add("@iPatientId", SqlDbType.Int).Value = data.PatientId;
-                        command.Parameters.Add("@iDoctorId", SqlDbType.Int).Value = data.PatientId;
+                        command.Parameters.Add("@iDoctorId", SqlDbType.Int).Value = data.DoctorId;
                         command.Parameters.Add("@sReason", SqlDbType.VarChar, 1000).Value = data.Reason;
-                        command.Parameters.Add("@iStatusId", SqlDbType.Int).Value = data.StatusId;
 
                         connection.Open();
 

@@ -22,7 +22,10 @@ namespace ERPTestAPI.Models
         public long StateId { get; set; }
         public String StateCode { get; set; }
         public String StateName { get; set; }
-        
+        public long ClinicId { get; set; }
+        public String ClinicCode { get; set; }
+        public String ClinicName { get; set; }
+
     }
 
     public class DoctorRequestModel
@@ -38,7 +41,10 @@ namespace ERPTestAPI.Models
         public String EmailAdd { get; set; }
         public long CityId { get; set; }
         public long StateId { get; set; }
-        
+        public long ClinicId { get; set; }
+        public String ClinicCode { get; set; }
+        public String ClinicName { get; set; }
+
     }
 
     public class DoctorListModel

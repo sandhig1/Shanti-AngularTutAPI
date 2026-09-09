@@ -26,6 +26,9 @@ namespace ERPTestAPI.Models
         public String DepartmentCode { get; set; }
         public String DepartmentName { get; set; }
         public String Status { get; set; }
+        public long ClinicId { get; set; }
+        public String ClinicCode { get; set; }
+        public String ClinicName { get; set; }
 
     }
 
@@ -50,6 +53,9 @@ namespace ERPTestAPI.Models
         public String DepartmentCode { get; set; }
         public String DepartmentName { get; set; }
         public String Status { get; set; }
+        public long ClinicId { get; set; }
+        public String ClinicCode { get; set; }
+        public String ClinicName { get; set; }
 
 
     }

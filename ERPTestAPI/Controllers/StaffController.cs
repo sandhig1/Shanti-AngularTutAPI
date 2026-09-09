@@ -35,9 +35,10 @@ namespace ERPTestAPI.Controllers
                     string query = "SELECT a.StaffId, a.StaffCode, a.StaffName, a.DateOfBirth, dbo.GetDateFormat1(a.DateOfBirth) as DateofBirthFormatted, " +
                                     " a.Gender, a.Age,  a.MobileNo, a.EmailAdd, " +
                                     " a.Address, a.JoiningDate, dbo.GetDateFormat1(a.JoiningDate) as JoiningDateFormatted, a.StaffCategoryId, b.StaffCategoryCode, b.StaffCategoryName, a.DepartmentId, c.DepartmentCode, c.DepartmentName, " +
-                                    " a.Status " +
+                                    " a.Status, a.ClinicId, d.ClinicCode, d.ClinicName " +
                                     " FROM gl_Staff_m a inner join gl_StaffCategory_m b on a.StaffCategoryId = b.StaffCategoryId " +
-                                    " inner join gl_Department_m c on a.DepartmentId = c.DepartmentId ";
+                                    " inner join gl_Department_m c on a.DepartmentId = c.DepartmentId " +
+                                    " inner join gl_Clinic_m d on a.ClinicId = d.ClinicId ";
 
                     using (var command = new SqlCommand(query, connection))
                     {
@@ -68,6 +69,9 @@ namespace ERPTestAPI.Controllers
                                 obj.DepartmentCode = Convert.ToString(reader["DepartmentCode"]);
                                 obj.DepartmentName = Convert.ToString(reader["DepartmentName"]);
                                 obj.Status = Convert.ToString(reader["Status"]);
+                                obj.ClinicId = Convert.ToInt64(reader["ClinicId"]);
+                                obj.ClinicCode = Convert.ToString(reader["ClinicCode"]);
+                                obj.ClinicName = Convert.ToString(reader["ClinicName"]);
 
                                 StaffList.data.Add(obj);
                             }
@@ -104,8 +108,8 @@ namespace ERPTestAPI.Controllers
                 {
                     string query = "SELECT a.StaffId, a.StaffCode, a.StaffName, a.DateOfBirth, a.Gender, a.Age,  a.MobileNo, a.EmailAdd, a.Address, a.JoiningDate, dbo.GetDateFormat1(a.JoiningDate) as JoiningDateFormatted, a.StaffCategoryId, b.StaffCategoryCode, b.StaffCategoryName, a.DepartmentId, c.DepartmentCode, c.DepartmentName, " +
                         "a.StaffCategoryId, b.StaffCategoryCode, b.StaffCategoryName, " +
-                        "a.DepartmentId, c.DepartmentCode, c.DepartmentName, a.Status " +
-                                " FROM gl_Staff_m a, gl_StaffCategory_m b, gl_Department_m c where a.StaffCategoryId = b.StaffCategoryId and a.DepartmentId = c.DepartmentId";
+                        "a.DepartmentId, c.DepartmentCode, c.DepartmentName, a.Status, a.ClinicId, d.ClinicCode, d.ClinicName " +
+                        " FROM gl_Staff_m a, gl_StaffCategory_m b, gl_Department_m c, gl_Clinic_m d where a.StaffCategoryId = b.StaffCategoryId and a.DepartmentId = c.DepartmentId and a.ClinicId = d.ClinicId ";
                     using (var command = new SqlCommand(query, connection))
                     {
                         connection.Open();
@@ -134,6 +138,9 @@ namespace ERPTestAPI.Controllers
                                 obj.DepartmentCode = Convert.ToString(reader["DepartmentCode"]);
                                 obj.DepartmentName = Convert.ToString(reader["DepartmentName"]);
                                 obj.Status = Convert.ToString(reader["Status"]);
+                                obj.ClinicId = Convert.ToInt64(reader["ClinicId"]);
+                                obj.ClinicCode = Convert.ToString(reader["ClinicCode"]);
+                                obj.ClinicName = Convert.ToString(reader["ClinicName"]);
 
                                 StaffList.data.Add(obj);
                             }
@@ -171,9 +178,10 @@ namespace ERPTestAPI.Controllers
                     string query = "SELECT a.StaffId, a.StaffCode, a.StaffName, a.DateOfBirth, dbo.GetDateFormat1(a.DateOfBirth) as DateofBirthFormatted, " +
                                     " a.Gender, a.Age,  a.MobileNo, a.EmailAdd, " +
                                     " a.Address, a.JoiningDate, dbo.GetDateFormat1(a.JoiningDate) as JoiningDateFormatted, a.StaffCategoryId, b.StaffCategoryCode, b.StaffCategoryName, a.DepartmentId, c.DepartmentCode, c.DepartmentName, " +
-                                    " a.Status " +
+                                    " a.ClinicId, a.Status " +
                                     " FROM gl_Staff_m a inner join gl_StaffCategory_m b on a.StaffCategoryId = b.StaffCategoryId " +
                                     " inner join gl_Department_m c on a.DepartmentId = c.DepartmentId " +
+                                    " inner join gl_Clinic_m d on a.ClinicId = d.ClinicId " +
                                     " Where a.StaffId = " +id.ToString();
 
                     using (var command = new SqlCommand(query, connection))
@@ -203,6 +211,8 @@ namespace ERPTestAPI.Controllers
                                 StaffDetail.data.DepartmentCode = Convert.ToString(reader["DepartmentCode"]);
                                 StaffDetail.data.DepartmentName = Convert.ToString(reader["DepartmentName"]);
                                 StaffDetail.data.Status = Convert.ToString(reader["Status"]);
+                                StaffDetail.data.ClinicId = Convert.ToInt64(reader["ClinicId"]);
+                             
                             }
 
                             StaffDetail.status = true;
@@ -252,7 +262,8 @@ namespace ERPTestAPI.Controllers
                         command.Parameters.Add("@iStaffCategoryId", SqlDbType.Int).Value = data.StaffCategoryId;
                         command.Parameters.Add("@iDepartmentId", SqlDbType.Int).Value = data.DepartmentId;
                         command.Parameters.Add("@sStatus", SqlDbType.VarChar, 20).Value = data.Status;
-                        
+                        command.Parameters.Add("@iClinicId", SqlDbType.Int).Value = data.ClinicId;
+
 
                         connection.Open();
 
@@ -310,6 +321,7 @@ namespace ERPTestAPI.Controllers
                         command.Parameters.Add("@iStaffCategoryId", SqlDbType.Int).Value = data.StaffCategoryId;
                         command.Parameters.Add("@iDepartmentId", SqlDbType.Int).Value = data.DepartmentId;
                         command.Parameters.Add("@sStatus", SqlDbType.VarChar, 20).Value = data.Status;
+                        command.Parameters.Add("@iClinicId", SqlDbType.Int).Value = data.ClinicId;
 
                         connection.Open();
 

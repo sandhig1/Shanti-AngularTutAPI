@@ -220,6 +220,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\Authentication.cs" />
     <Compile Include="Controllers\AreaController.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\StatusModel.cs" />
     <Compile Include="Models\DoctorModel.cs" />
     <Compile Include="Models\AreaModel.cs" />
     <Compile Include="Models\CityModel.cs" />

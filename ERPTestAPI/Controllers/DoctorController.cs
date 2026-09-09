@@ -34,8 +34,8 @@ namespace ERPTestAPI.Controllers
                 {
                     string query = "SELECT a.DoctorId, a.DoctorCode, a.DoctorName, a.Gender, a.Age, a.Qualification, a.Address, a.MobileNo, a.EmailAdd," +
                         "a.StateId, b.StateCode, b.StateName, " +
-                        "a.CityId, c.CityCode, c.CityName " +
-                                " FROM gl_Doctor_m a, gl_state_m b, gl_City_m c where a.StateId = b.StateId and a.CityId = c.CityId";
+                        "a.CityId, c.CityCode, c.CityName, a.ClinicId, d.ClinicCode, d.ClinicName " +
+                        " FROM gl_Doctor_m a, gl_state_m b, gl_City_m c, gl_Clinic_m d where a.StateId = b.StateId and a.CityId = c.CityId and a.ClinicId = d.ClinicId ";
 
                     using (var command = new SqlCommand(query, connection))
                     {
@@ -62,6 +62,9 @@ namespace ERPTestAPI.Controllers
                                 obj.StateId = Convert.ToInt64(reader["StateId"]);
                                 obj.StateCode = Convert.ToString(reader["StateCode"]);
                                 obj.StateName = Convert.ToString(reader["StateName"]);
+                                obj.ClinicId = Convert.ToInt64(reader["ClinicId"]);
+                                obj.ClinicCode = Convert.ToString(reader["ClinicCode"]);
+                                obj.ClinicName = Convert.ToString(reader["ClinicName"]);
 
                                 DoctorList.data.Add(obj);
                             }
@@ -96,8 +99,8 @@ namespace ERPTestAPI.Controllers
             {
                 using (var connection = new SqlConnection(_connectionString))
                 {
-                    string query = "SELECT a.DoctorId, a.DoctorCode, a.DoctorName, a.Gender, a.Age, a.Qualification, a.Address, a.MobileNo, a.EmailAdd, a.StateId, b.StateCode, b.StateName, a.CityId, c.CityCode, c.CityName" +
-                            "  FROM gl_Doctor_m a, gl_state_m b, gl_City_m c where a.StateId = b.StateId and a.CityId = c.CityId";
+                    string query = "SELECT a.DoctorId, a.DoctorCode, a.DoctorName, a.Gender, a.Age, a.Qualification, a.Address, a.MobileNo, a.EmailAdd, a.StateId, b.StateCode, b.StateName, a.CityId, c.CityCode, c.CityName, a.ClinicId, d.ClinicCode, d.ClinicName " +
+                            "  FROM gl_Doctor_m a, gl_state_m b, gl_City_m c, gl_Clinic_m d where a.StateId = b.StateId and a.CityId = c.CityId and a.ClinicId = d.ClinicId ";
 
                     using (var command = new SqlCommand(query, connection))
                     {
@@ -125,6 +128,9 @@ namespace ERPTestAPI.Controllers
                                 obj.StateId = Convert.ToInt64(reader["StateId"]);
                                 obj.StateCode = Convert.ToString(reader["StateCode"]);
                                 obj.StateName = Convert.ToString(reader["StateName"]);
+                                obj.ClinicId = Convert.ToInt64(reader["ClinicId"]);
+                                obj.ClinicCode = Convert.ToString(reader["ClinicCode"]);
+                                obj.ClinicName = Convert.ToString(reader["ClinicName"]);
 
                                 DoctorList.data.Add(obj);
                             }
@@ -159,8 +165,8 @@ namespace ERPTestAPI.Controllers
             {
                 using (var connection = new SqlConnection(_connectionString))
                 {
-                    string query = "SELECT a.DoctorId, a.DoctorCode, a.DoctorName,  a.Gender, a.Age, a.Qualification, a.Address, a.MobileNo, a.EmailAdd, a.StateId, b.StateCode, b.StateName, a.CityId, c.CityCode, c.CityName " +
-                                "  FROM gl_Doctor_m a, gl_state_m b, gl_City_m c where a.StateId = b.StateId and a.CityId = c.CityId and a.DoctorId=" + id.ToString();
+                    string query = "SELECT a.DoctorId, a.DoctorCode, a.DoctorName,  a.Gender, a.Age, a.Qualification, a.Address, a.MobileNo, a.EmailAdd, a.StateId, b.StateCode, b.StateName, a.CityId, c.CityCode, c.CityName, a.ClinicId, d.ClinicCode, d.ClinicName  " +
+                                "  FROM gl_Doctor_m a, gl_state_m b, gl_City_m c, gl_Clinic_m d where a.StateId = b.StateId and a.CityId = c.CityId and a.ClinicId = d.ClinicId and a.DoctorId=" + id.ToString();
 
                     using (var command = new SqlCommand(query, connection))
                     {
@@ -184,7 +190,10 @@ namespace ERPTestAPI.Controllers
                                 DoctorDetail.data.CityName = Convert.ToString(reader["CityName"]);
                                 DoctorDetail.data.StateId = Convert.ToInt64(reader["StateId"]);
                                 DoctorDetail.data.StateCode = Convert.ToString(reader["StateCode"]);
-                                DoctorDetail.data.StateName = Convert.ToString(reader["StateName"]);                                
+                                DoctorDetail.data.StateName = Convert.ToString(reader["StateName"]);
+                                DoctorDetail.data.ClinicId = Convert.ToInt64(reader["ClinicId"]);
+                                DoctorDetail.data.ClinicCode = Convert.ToString(reader["ClinicCode"]);
+                                DoctorDetail.data.ClinicName = Convert.ToString(reader["ClinicName"]);
                             }
 
                             DoctorDetail.status = true;
@@ -232,6 +241,7 @@ namespace ERPTestAPI.Controllers
                         command.Parameters.Add("@sEmailAdd", SqlDbType.VarChar, 50).Value = data.EmailAdd;
                         command.Parameters.Add("@iStateId", SqlDbType.Int).Value = data.StateId;
                         command.Parameters.Add("@iCityId", SqlDbType.Int).Value = data.CityId;
+                        command.Parameters.Add("@iClinicId", SqlDbType.Int).Value = data.ClinicId;
 
                         connection.Open();
 
@@ -287,6 +297,7 @@ namespace ERPTestAPI.Controllers
                         command.Parameters.Add("@sEmailAdd", SqlDbType.VarChar, 50).Value = data.EmailAdd;
                         command.Parameters.Add("@iStateId", SqlDbType.Int).Value = data.StateId;
                         command.Parameters.Add("@iCityId", SqlDbType.Int).Value = data.CityId;
+                        command.Parameters.Add("@iClinicId", SqlDbType.Int).Value = data.ClinicId;
 
                         connection.Open();
 
