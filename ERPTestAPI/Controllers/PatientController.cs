@@ -35,10 +35,11 @@ namespace ERPTestAPI.Controllers
                     string query = "SELECT a.PatientId, a.PatientCode, a.PatientName, a.DateOfBirth, dbo.GetDateFormat1(a.DateOfBirth) as DateofBirthFormatted, " +
                                     " a.Gender, a.Age,  a.MobileNo, a.EmailAdd, " +
                                     " a.Address, a.BloodGroup, a.MedicalHistory, a.Medicine, a.Insured, a.StateId, b.StateCode, b.StateName, a.CityId, c.CityCode, c.CityName, " +
-                                    " a.AreaId, d.AreaCode, d.AreaName " +
+                                    " a.AreaId, d.AreaCode, d.AreaName, a.ClinicId, e.ClinicCode, e.ClinicName  " +
                                     " FROM gl_Patient_m a inner join gl_state_m b on a.StateId = b.StateId " +
                                     " inner join gl_City_m c on a.CityId = c.CityId " +
-                                    " left join gl_Area_m d on a.AreaId = d.AreaId";
+                                    " left join gl_Area_m d on a.AreaId = d.AreaId " +
+                                    " inner join gl_Clinic_m e on a.ClinicId = e.ClinicId ";
 
                     using (var command = new SqlCommand(query, connection))
                     {
@@ -73,6 +74,9 @@ namespace ERPTestAPI.Controllers
                                 obj.StateId = Convert.ToInt64(reader["StateId"]);
                                 obj.StateCode = Convert.ToString(reader["StateCode"]);
                                 obj.StateName = Convert.ToString(reader["StateName"]);
+                                obj.ClinicId = Convert.ToInt64(reader["ClinicId"]);
+                                obj.ClinicCode = Convert.ToString(reader["ClinicCode"]);
+                                obj.ClinicName = Convert.ToString(reader["ClinicName"]);
 
                                 PatientList.data.Add(obj);
                             }
@@ -110,8 +114,9 @@ namespace ERPTestAPI.Controllers
                     string query = "SELECT a.PatientId, a.PatientCode, a.PatientName, a.DateOfBirth, a.Gender, a.Age,  a.MobileNo, a.EmailAdd, a.Address, a.BloodGroup, a.MedicalHistory, a.Medicine, a.Insured, " +
                         "a.StateId, b.StateCode, b.StateName, " +
                         "a.CityId, c.CityCode, c.CityName, " +
-                        "a.AreaId, d.AreaCode, d.AreaName " +
-                                " FROM gl_Patient_m a, gl_state_m b, gl_City_m c, gl_Area_m d where a.StateId = b.StateId and a.CityId = c.CityId and a.AreaId = d.AreaId";
+                        "a.AreaId, d.AreaCode, d.AreaName ," +
+                        " a.ClinicId, e.ClinicCode, e.ClinicName " +
+                        " FROM gl_Patient_m a, gl_state_m b, gl_City_m c, gl_Area_m d, gl_Clinic_m e where a.StateId = b.StateId and a.CityId = c.CityId and a.AreaId = d.AreaId and a.ClinicId = e.ClinicId ";
                     using (var command = new SqlCommand(query, connection))
                     {
                         connection.Open();
@@ -144,6 +149,9 @@ namespace ERPTestAPI.Controllers
                                 obj.StateId = Convert.ToInt64(reader["StateId"]);
                                 obj.StateCode = Convert.ToString(reader["StateCode"]);
                                 obj.StateName = Convert.ToString(reader["StateName"]);
+                                obj.ClinicId = Convert.ToInt64(reader["ClinicId"]);
+                                obj.ClinicCode = Convert.ToString(reader["ClinicCode"]);
+                                obj.ClinicName = Convert.ToString(reader["ClinicName"]);
 
                                 PatientList.data.Add(obj);
                             }
@@ -181,10 +189,12 @@ namespace ERPTestAPI.Controllers
                     string query = "SELECT a.PatientId, a.PatientCode, a.PatientName, a.DateOfBirth, dbo.GetDateFormat1(a.DateOfBirth) as DateofBirthFormatted, " +
                                     " a.Gender, a.Age,  a.MobileNo, a.EmailAdd, " +
                                     " a.Address, a.BloodGroup, a.MedicalHistory, a.Medicine, a.Insured, a.StateId, b.StateCode, b.StateName, a.CityId, c.CityCode, c.CityName, " +
-                                    " a.AreaId, d.AreaCode, d.AreaName " +
+                                    " a.AreaId, d.AreaCode, d.AreaName, a.ClinicId, e.ClinicCode, e.ClinicName " +
                                     " FROM gl_Patient_m a inner join gl_state_m b on a.StateId = b.StateId " +
                                     " inner join gl_City_m c on a.CityId = c.CityId " +
-                                    " left join gl_Area_m d on a.AreaId = d.AreaId Where a.PatientId = " +id.ToString();
+                                    " left join gl_Area_m d on a.AreaId = d.AreaId " +
+                                    " inner join gl_Clinic_m e on a.ClinicId = e.ClinicId " +
+                                    " Where a.PatientId = " +id.ToString();
 
                     using (var command = new SqlCommand(query, connection))
                     {
@@ -216,7 +226,8 @@ namespace ERPTestAPI.Controllers
                                 PatientDetail.data.CityName = Convert.ToString(reader["CityName"]);
                                 PatientDetail.data.StateId = Convert.ToInt64(reader["StateId"]);
                                 PatientDetail.data.StateCode = Convert.ToString(reader["StateCode"]);
-                                PatientDetail.data.StateName = Convert.ToString(reader["StateName"]);                                
+                                PatientDetail.data.StateName = Convert.ToString(reader["StateName"]);
+                                PatientDetail.data.ClinicId = Convert.ToInt64(reader["ClinicId"]);
                             }
 
                             PatientDetail.status = true;
@@ -269,7 +280,8 @@ namespace ERPTestAPI.Controllers
                         command.Parameters.Add("@iAreaId", SqlDbType.Int).Value = data.AreaId;
                         command.Parameters.Add("@iCityId", SqlDbType.Int).Value = data.CityId;
                         command.Parameters.Add("@iStateId", SqlDbType.Int).Value = data.StateId;
-                        
+                        command.Parameters.Add("@iClinicId", SqlDbType.Int).Value = data.ClinicId;
+
 
                         connection.Open();
 
@@ -330,6 +342,7 @@ namespace ERPTestAPI.Controllers
                         command.Parameters.Add("@iAreaId", SqlDbType.Int).Value = data.AreaId;
                         command.Parameters.Add("@iCityId", SqlDbType.Int).Value = data.CityId;
                         command.Parameters.Add("@iStateId", SqlDbType.Int).Value = data.StateId;
+                        command.Parameters.Add("@iClinicId", SqlDbType.Int).Value = data.ClinicId;
 
                         connection.Open();
 
